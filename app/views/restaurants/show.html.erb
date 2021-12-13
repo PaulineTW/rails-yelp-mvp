@@ -13,6 +13,7 @@
       Be the first to leave a review for <%= @restaurant.name %>
     <% else %>
       <% @restaurant.reviews.each do |review| %>
+      <p id="review-<%= review.id %>">
         <p><%= review.content %></p>
         <p><%= review.rating %></p>
       <% end %>
