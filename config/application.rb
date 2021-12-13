@@ -32,4 +32,10 @@ module RailsYelpMvp
     # Don't generate system test files.
     config.generators.system_tests = nil
   end
+
+  class Application < Rails::Application
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+    # [...]
+  end
+  
 end
