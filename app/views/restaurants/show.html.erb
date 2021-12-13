@@ -1,14 +1,29 @@
-<h2><%= @restaurant.name %></h2>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone_number %></p>
-<p><%= @restaurant.category %></p>
-<br>
-<br>
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-    <li class="list-group-item"><%= review.rating %></li>
+<div class= "container my-5">
+  <h2><%= @restaurant.name %></h2>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <p><%= @restaurant.category %></p>
+  <br>
+  <h2>
+    <%= pluralize @restaurant.reviews.size, "review" %>
+  </h2>
+
+  <div id="reviews">
+  <% if @restaurant.reviews.blank? %>
+    Be the first to leave a review for <%= @restaurant.name %>
+  <% else %>
+    <% @restaurant.reviews.each do |review| %>
+      <p><%= review.content %></p>
+    <% end %>
   <% end %>
-</ul>
-<%= link_to 'Back', restaurants_path %> |
-<%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
+</div>
+
+  <ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %></li>
+      <li class="list-group-item"><%= review.rating %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'Back', restaurants_path %> |
+  <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
+</div>
