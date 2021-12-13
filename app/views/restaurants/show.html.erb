@@ -9,22 +9,22 @@
   </h2>
 
   <div id="reviews">
-  <% if @restaurant.reviews.blank? %>
-    Be the first to leave a review for <%= @restaurant.name %>
-  <% else %>
-    <% @restaurant.reviews.each do |review| %>
-      <p><%= review.content %></p>
-      <p><%= review.rating %></p>
+    <% if @restaurant.reviews.blank? %>
+      Be the first to leave a review for <%= @restaurant.name %>
+    <% else %>
+      <% @restaurant.reviews.each do |review| %>
+        <p><%= review.content %></p>
+        <p><%= review.rating %></p>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
 <form action= "/restaurant/1/review"></form>
-<%= simple_form_for([ @restaurant, @review ]) do |f| %>
-  <%= f.input :content, as: :text %>
-  <%= f.button :submit %>
-<% end %>
-
-  <%= link_to 'Back', restaurants_path %> |
-  <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
+  <%= simple_form_for([ @restaurant, @review ], remote: true) do |f| %>
+    <%= f.input :content, placeholder: 'Add review', as: :text %>
+    <%= f.input :rating, as: :integer %>
+    <%= f.button :submit, class: 'btn btn-light' %>
+  <% end %>
+  <br>
+  <%= link_to 'Back', restaurants_path %> 
 </div>
