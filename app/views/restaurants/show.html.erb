@@ -22,13 +22,14 @@
     <% end %>
   </div>
 
-  <%= simple_form_for([ @restaurant, @review ],
-    data: {
+  <form action= "/restaurant/1/review"></form>
+    <%= simple_form_for([ @restaurant, @review ],
+      data: {
       insert_in_list_target: 'form',
-      action: 'submit->insert-in-list#send'}) do |f| %>
+      action: 'submit->insert-in-list#send'}) do |f| %>      
     <%= f.input :content, placeholder: 'Add review', as: :text %>
     <%= f.input :rating, as: :integer %>
     <%= f.button :submit, class: 'btn btn-light' %>
-  <% end %>
+    <% end %>
     <%= link_to 'Back', restaurants_path %> 
 </div>
